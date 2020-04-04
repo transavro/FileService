@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package chunker;
+
+
+service FileService {
+    rpc Downloader(FileMeta) returns (stream Chunk) {}
+    rpc Uploader(stream Chunk) returns (FileMeta) {}
+}
+
+message FileMeta{
+    string filePath  = 1;
+}
+
+message Chunk {
+    bytes chunk = 1;
+}
